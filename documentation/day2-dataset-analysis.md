@@ -26,15 +26,28 @@ The dataset contains customer demographic, lifestyle, and insurance-related info
 
 ### Number of Records
 
-(To be filled after analysis)
+1338 customer records
 
 ### Number of Features
 
-7
+7 features
 
 ### Missing Values
 
-(To be filled after analysis)
+No missing values were detected in the dataset. All records were complete and suitable for analysis without requiring missing value treatment.
+
+### Data Types
+
+- Numerical Features:
+  - age
+  - bmi
+  - children
+  - charges
+
+- Categorical Features:
+  - sex
+  - smoker
+  - region
 
 ## Initial Observations
 
