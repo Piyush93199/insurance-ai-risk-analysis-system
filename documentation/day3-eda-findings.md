@@ -8,7 +8,7 @@ To explore the dataset, understand feature distributions, identify patterns, and
 
 ## Age Analysis
 
-![Age Distribution](/home/piyush/Desktop/insurance-ai-project/screenshots/age_distribution.png)
+![Age Distribution](https://raw.githubusercontent.com/Piyush93199/insurance-ai-risk-analysis-system/main/screenshots/age_distribution.png)
 
 ### Observations
 
@@ -21,7 +21,7 @@ To explore the dataset, understand feature distributions, identify patterns, and
 
 ## BMI Analysis
 
-![BMI Distribution](/home/piyush/Desktop/insurance-ai-project/screenshots/bmi_distribution.png)
+![BMI Distribution](https://raw.githubusercontent.com/Piyush93199/insurance-ai-risk-analysis-system/main/screenshots/bmi_distribution.png)
 
 ### Observations
 
@@ -33,7 +33,7 @@ To explore the dataset, understand feature distributions, identify patterns, and
 
 ## Insurance Charges Analysis
 
-![Charges Distribution](/home/piyush/Desktop/insurance-ai-project/screenshots/charges_distribution.png)
+![Charges Distribution](https://raw.githubusercontent.com/Piyush93199/insurance-ai-risk-analysis-system/main/screenshots/charges_distribution.png)
 
 ### Observations
 
@@ -46,7 +46,7 @@ To explore the dataset, understand feature distributions, identify patterns, and
 
 ## Smoking Status Analysis
 
-![Smoker Analysis](/home/piyush/Desktop/insurance-ai-project/screenshots/smoker_analysis.png)
+![Smoker Analysis](https://raw.githubusercontent.com/Piyush93199/insurance-ai-risk-analysis-system/main/screenshots/smoker_analysis.png)
 
 ### Observations
 
@@ -58,7 +58,7 @@ To explore the dataset, understand feature distributions, identify patterns, and
 
 ## Gender Analysis
 
-![Gender Analysis](/home/piyush/Desktop/insurance-ai-project/screenshots/gender_analysis.png)
+![Gender Analysis](https://raw.githubusercontent.com/Piyush93199/insurance-ai-risk-analysis-system/main/screenshots/gender_analysis.png)
 
 ### Observations
 
