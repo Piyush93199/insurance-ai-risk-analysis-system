@@ -78,27 +78,6 @@ This project is being developed as part of a 45-day AI/ML internship focused on 
 
 ---
 
-## Project Structure
-
-```text
-insurance-ai-risk-analysis-system/
-│
-├── dataset/
-├── documentation/
-│   ├── project-proposal.md
-│   └── day1-research-notes.md
-│
-├── frontend/
-├── models/
-├── notebooks/
-├── presentations/
-├── reports/
-│
-└── README.md
-```
-
----
-
 ## Development Roadmap
 
 ### Phase 1
