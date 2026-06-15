@@ -8,7 +8,14 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("Insurance AI Risk Analysis System")
+st.title("🏥 Insurance AI Risk Analysis System")
+
+st.markdown(
+"""
+This system predicts customer insurance risk levels and recommends
+appropriate insurance plans using Machine Learning.
+"""
+)
 
 st.write(
     "Predict customer risk levels and receive policy recommendations."
@@ -86,6 +93,15 @@ if st.button("Analyze Customer"):
     })
 
     risk, recommendation = predict_risk(customer)
+
+    if risk == "Low Risk":
+        st.success("🟢 Low Risk Customer")
+
+    elif risk == "Medium Risk":
+        st.warning("🟡 Medium Risk Customer")
+
+    else:
+        st.error("🔴 High Risk Customer")
 
     st.success(
         f"Risk Level: {risk}"
