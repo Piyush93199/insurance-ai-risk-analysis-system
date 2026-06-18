@@ -8,13 +8,50 @@ st.set_page_config(
     layout="centered"
 )
 
+st.sidebar.title("Navigation")
+
+st.sidebar.markdown(
+"""
+### Insurance AI System
+
+- Risk Prediction
+- Policy Recommendation
+- Customer Analysis
+"""
+)
+
 st.title("🏥 Insurance AI Risk Analysis System")
 
-st.markdown(
-"""
-This system predicts customer insurance risk levels and recommends
-appropriate insurance plans using Machine Learning.
-"""
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric(
+        "Classification Accuracy",
+        "90.30%"
+    )
+
+with col2:
+    st.metric(
+        "Best R² Score",
+        "89.38%"
+    )
+
+with col3:
+    st.metric(
+        "Dataset Records",
+        "1338"
+    )
+
+st.markdown("---")
+
+st.subheader("Project Information")
+
+st.info(
+    """
+    This AI-powered system analyzes customer information,
+    predicts insurance risk levels, and recommends
+    suitable insurance policies using Machine Learning.
+    """
 )
 
 st.write(
