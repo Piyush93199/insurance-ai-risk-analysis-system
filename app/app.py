@@ -5,7 +5,7 @@ from model_utils import predict_risk
 
 st.set_page_config(
     page_title="Insurance AI Risk Analysis System",
-    layout="centered"
+    layout="wide"
 )
 
 st.sidebar.title("Navigation")
@@ -42,6 +42,12 @@ with col3:
         "1338"
     )
 
+st.markdown(
+"""
+### AI-Powered Insurance Risk Assessment & Policy Recommendation Platform
+"""
+)
+
 st.markdown("---")
 
 st.subheader("Project Information")
@@ -58,49 +64,56 @@ st.write(
     "Predict customer risk levels and receive policy recommendations."
 )
 
-age = st.slider(
+st.subheader("Customer Information")
+
+left_col, right_col = st.columns(2)
+
+with left_col:
+
+    age = st.slider(
     "Age",
     18,
     100,
     30
-)
+    )
 
-sex = st.selectbox(
-    "Gender",
-    ["Male", "Female"]
-)
+    sex = st.selectbox(
+        "Gender",
+        ["Male", "Female"]
+    )
 
-bmi = st.number_input(
-    "BMI",
-    min_value=10.0,
-    max_value=60.0,
-    value=25.0
-)
+    bmi = st.number_input(
+        "BMI",
+        min_value=10.0,
+        max_value=60.0,
+        value=25.0
+    )
 
-children = st.number_input(
+with right_col:
+
+    children = st.number_input(
     "Number of Children",
     min_value=0,
     max_value=10,
     value=0
-)
+    )
 
-smoker = st.selectbox(
+    smoker = st.selectbox(
     "Smoker",
     ["No", "Yes"]
-)
+    )
 
-region = st.selectbox(
-    "Region",
-    [
-        "Northeast",
-        "Northwest",
-        "Southeast",
-        "Southwest"
-    ]
-)
+    region = st.selectbox(
+        "Region",
+        [
+            "Northeast",
+            "Northwest",
+            "Southeast",
+            "Southwest"
+        ]
+    )
 
-if st.button("Analyze Customer"):
-
+if st.button("🔍 Analyze Customer", use_container_width=True):
     customer = pd.DataFrame({
 
         "age": [age],
@@ -129,6 +142,8 @@ if st.button("Analyze Customer"):
         ]
     })
 
+    st.subheader("Prediction Results")
+
     risk, recommendation = predict_risk(customer)
 
     if risk == "Low Risk":
@@ -147,3 +162,9 @@ if st.button("Analyze Customer"):
     st.info(
         f"Recommended Policy: {recommendation}"
     )
+
+st.markdown("---")
+
+st.caption(
+    "Insurance AI Risk Analysis and Policy Recommendation System | AI/ML Internship Project"
+)
