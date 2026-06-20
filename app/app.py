@@ -114,6 +114,7 @@ with right_col:
     )
 
 if st.button("🔍 Analyze Customer", use_container_width=True):
+
     customer = pd.DataFrame({
 
         "age": [age],
@@ -146,24 +147,91 @@ if st.button("🔍 Analyze Customer", use_container_width=True):
 
     risk, recommendation = predict_risk(customer)
 
-    if risk == "Low Risk":
-        st.success("🟢 Low Risk Customer")
-
-    elif risk == "Medium Risk":
-        st.warning("🟡 Medium Risk Customer")
-
-    else:
-        st.error("🔴 High Risk Customer")
+    st.balloons()
 
     st.success(
-        f"Risk Level: {risk}"
+        "Analysis Completed Successfully"
     )
 
-    st.info(
-        f"Recommended Policy: {recommendation}"
+    if risk == "Low Risk":
+
+        st.success(
+            f"🟢 Risk Level: {risk}"
+        )
+
+    elif risk == "Medium Risk":
+
+        st.warning(
+            f"🟡 Risk Level: {risk}"
+        )
+
+    else:
+
+        st.error(
+            f"🔴 Risk Level: {risk}"
+        )
+
+    st.markdown("### Recommended Insurance Plan")
+
+    st.markdown(
+        f"""
+        <div style="
+            padding:20px;
+            border-radius:10px;
+            background-color:#0000001A;
+            border-left:6px solid #2563EB;
+        ">
+            <h4>{recommendation}</h4>
+            <p>
+            Policy recommendation generated using
+            customer risk assessment and machine
+            learning analysis.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
     )
 
-st.markdown("---")
+    st.markdown("---")
+
+    st.subheader("Customer Analysis Summary")
+
+    st.write(f"Age: {age}")
+    st.write(f"BMI: {bmi}")
+    st.write(f"Children: {children}")
+    st.write(f"Smoking Status: {smoker}")
+    st.write(f"Region: {region}")
+
+    st.markdown("---")
+
+    st.subheader("Risk Interpretation")
+
+    if risk == "Low Risk":
+
+        st.info(
+            """
+            Customer shows low insurance risk.
+            Suitable for standard insurance plans.
+            """
+        )
+
+    elif risk == "Medium Risk":
+
+        st.warning(
+            """
+            Customer shows moderate risk factors.
+            Enhanced policy coverage is recommended.
+            """
+        )
+
+    else:
+
+        st.error(
+            """
+            Customer exhibits high risk characteristics.
+            Premium insurance plans are recommended.
+            """
+        )
 
 st.caption(
     "Insurance AI Risk Analysis and Policy Recommendation System | AI/ML Internship Project"
