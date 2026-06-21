@@ -22,26 +22,6 @@ st.sidebar.markdown(
 
 st.title("🏥 Insurance AI Risk Analysis System")
 
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.metric(
-        "Classification Accuracy",
-        "90.30%"
-    )
-
-with col2:
-    st.metric(
-        "Best R² Score",
-        "89.38%"
-    )
-
-with col3:
-    st.metric(
-        "Dataset Records",
-        "1338"
-    )
-
 st.markdown(
 """
 ### AI-Powered Insurance Risk Assessment & Policy Recommendation Platform
@@ -232,6 +212,90 @@ if st.button("🔍 Analyze Customer", use_container_width=True):
             Premium insurance plans are recommended.
             """
         )
+
+    st.markdown("---")
+
+    st.header("📊 Dashboard Analytics")
+
+    risk_distribution = {
+    "Low Risk": 446,
+    "Medium Risk": 445,
+    "High Risk": 446
+    }
+
+    risk_df = pd.DataFrame(
+        {
+            "Risk Level": risk_distribution.keys(),
+            "Customers": risk_distribution.values()
+        }
+    )
+
+    st.subheader("Risk Distribution")
+
+    st.bar_chart(
+        risk_df.set_index("Risk Level")
+    )
+
+    segment_df = pd.DataFrame(
+        {
+            "Customer Type": [
+                "Non-Smoker",
+                "Smoker"
+            ],
+            "Count": [
+                1063,
+                274
+            ]
+        }
+    )
+
+    st.subheader("Customer Segmentation")
+
+    st.bar_chart(
+        segment_df.set_index(
+            "Customer Type"
+        )
+    )
+
+st.subheader("Model Performance")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+
+    st.metric(
+        "Classification Accuracy",
+        "90.30%"
+    )
+
+with col2:
+
+    st.metric(
+        "Optimized Random Forest R²",
+        "89.38%"
+    )
+
+with col3:
+    st.metric(
+        "Dataset Records",
+        "1338"
+    )
+
+st.subheader(
+    "Business Insights"
+)
+
+st.info(
+    """
+    • Smokers represent the majority of high-risk customers.
+
+    • Low-risk and high-risk customers are almost equally distributed.
+
+    • Random Forest achieved the best overall predictive performance.
+
+    • The recommendation engine can support insurance decision-making.
+    """
+)
 
 st.caption(
     "Insurance AI Risk Analysis and Policy Recommendation System | AI/ML Internship Project"
