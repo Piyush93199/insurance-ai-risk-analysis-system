@@ -8,16 +8,15 @@ st.set_page_config(
     layout="wide"
 )
 
-st.sidebar.title("Navigation")
+st.sidebar.title("🧭 Navigation")
 
-st.sidebar.markdown(
-"""
-### Insurance AI System
-
-- Risk Prediction
-- Policy Recommendation
-- Customer Analysis
-"""
+page = st.sidebar.radio(
+    "Go To",
+    [
+        "Project Information",
+        "Risk Prediction",
+        "Analytics Dashboard"
+    ]
 )
 
 st.title("🏥 Insurance AI Risk Analysis System")
@@ -30,190 +29,224 @@ st.markdown(
 
 st.markdown("---")
 
-st.subheader("Project Information")
+if page == "Project Information":
 
-st.info(
+    st.header("Project Information")
+
+    st.info(
     """
-    This AI-powered system analyzes customer information,
-    predicts insurance risk levels, and recommends
-    suitable insurance policies using Machine Learning.
+    Insurance AI Risk Analysis and Policy Recommendation System is a
+    Machine Learning-based decision support platform developed using
+    Python, Pandas, Scikit-Learn, Joblib, and Streamlit.
+
+    The system analyzes customer attributes including age, gender,
+    BMI, number of children, smoking status, and region to predict
+    insurance risk levels using a trained Random Forest model with
+    90.30% classification accuracy.
+
+    Based on the predicted risk category, the platform automatically
+    recommends suitable insurance policies and provides interactive
+    analytics including risk distribution, customer segmentation,
+    model performance monitoring, and business insights.
     """
-)
-
-st.write(
-    "Predict customer risk levels and receive policy recommendations."
-)
-
-st.subheader("Customer Information")
-
-left_col, right_col = st.columns(2)
-
-with left_col:
-
-    age = st.slider(
-    "Age",
-    18,
-    100,
-    30
     )
 
-    sex = st.selectbox(
-        "Gender",
-        ["Male", "Female"]
+    st.markdown("### Technology Stack")
+
+    st.write("• Python")
+
+    st.write("• Pandas")
+
+    st.write("• NumPy")
+
+    st.write("• Scikit-Learn")
+
+    st.write("• Random Forest Classifier")
+
+    st.write("• Joblib")
+
+    st.write("• Streamlit")
+
+    st.markdown("---")
+
+if page == "Risk Prediction":
+    st.write(
+        "Predict customer risk levels and receive policy recommendations."
     )
 
-    bmi = st.number_input(
-        "BMI",
-        min_value=10.0,
-        max_value=60.0,
-        value=25.0
-    )
+    st.subheader("Customer Information")
 
-with right_col:
+    left_col, right_col = st.columns(2)
 
-    children = st.number_input(
-    "Number of Children",
-    min_value=0,
-    max_value=10,
-    value=0
-    )
+    with left_col:
 
-    smoker = st.selectbox(
-    "Smoker",
-    ["No", "Yes"]
-    )
+        age = st.slider(
+        "Age",
+        18,
+        100,
+        30
+        )
 
-    region = st.selectbox(
-        "Region",
-        [
-            "Northeast",
-            "Northwest",
-            "Southeast",
-            "Southwest"
-        ]
-    )
+        sex = st.selectbox(
+            "Gender",
+            ["Male", "Female"]
+        )
 
-if st.button("🔍 Analyze Customer", use_container_width=True):
+        bmi = st.number_input(
+            "BMI",
+            min_value=10.0,
+            max_value=60.0,
+            value=25.0
+        )
 
-    customer = pd.DataFrame({
+    with right_col:
 
-        "age": [age],
+        children = st.number_input(
+        "Number of Children",
+        min_value=0,
+        max_value=10,
+        value=0
+        )
 
-        "sex": [
-            1 if sex == "Male" else 0
-        ],
+        smoker = st.selectbox(
+        "Smoker",
+        ["No", "Yes"]
+        )
 
-        "bmi": [bmi],
-
-        "children": [children],
-
-        "smoker": [
-            1 if smoker == "Yes" else 0
-        ],
-
-        "region": [
-            {
-                "northeast": 0,
-                "northwest": 1,
-                "southeast": 2,
-                "southwest": 3
-            }[
-                region.lower()
+        region = st.selectbox(
+            "Region",
+            [
+                "Northeast",
+                "Northwest",
+                "Southeast",
+                "Southwest"
             ]
-        ]
-    })
+        )
 
-    st.subheader("Prediction Results")
+    if st.button("🔍 Analyze Customer", use_container_width=True):
 
-    risk, recommendation = predict_risk(customer)
+        customer = pd.DataFrame({
 
-    st.balloons()
+            "age": [age],
 
-    st.success(
-        "Analysis Completed Successfully"
-    )
+            "sex": [
+                1 if sex == "Male" else 0
+            ],
 
-    if risk == "Low Risk":
+            "bmi": [bmi],
+
+            "children": [children],
+
+            "smoker": [
+                1 if smoker == "Yes" else 0
+            ],
+
+            "region": [
+                {
+                    "northeast": 0,
+                    "northwest": 1,
+                    "southeast": 2,
+                    "southwest": 3
+                }[
+                    region.lower()
+                ]
+            ]
+        })
+        
+
+        st.subheader("Prediction Results")
+
+        risk, recommendation = predict_risk(customer)
+
+        st.balloons()
 
         st.success(
-            f"🟢 Risk Level: {risk}"
+            "Analysis Completed Successfully"
         )
 
-    elif risk == "Medium Risk":
+        if risk == "Low Risk":
 
-        st.warning(
-            f"🟡 Risk Level: {risk}"
+            st.success(
+                f"🟢 Risk Level: {risk}"
+            )
+
+        elif risk == "Medium Risk":
+
+            st.warning(
+                f"🟡 Risk Level: {risk}"
+            )
+
+        else:
+
+            st.error(
+                f"🔴 Risk Level: {risk}"
+            )
+
+        st.markdown("### Recommended Insurance Plan")
+
+        st.markdown(
+            f"""
+            <div style="
+                padding:20px;
+                border-radius:10px;
+                background-color:#0000001A;
+                border-left:6px solid #2563EB;
+            ">
+                <h4>{recommendation}</h4>
+                <p>
+                Policy recommendation generated using
+                customer risk assessment and machine
+                learning analysis.
+                </p>
+            </div>
+            """,
+            unsafe_allow_html=True
         )
 
-    else:
+        st.markdown("---")
 
-        st.error(
-            f"🔴 Risk Level: {risk}"
-        )
+        st.subheader("Customer Analysis Summary")
 
-    st.markdown("### Recommended Insurance Plan")
+        st.write(f"Age: {age}")
+        st.write(f"BMI: {bmi}")
+        st.write(f"Children: {children}")
+        st.write(f"Smoking Status: {smoker}")
+        st.write(f"Region: {region}")
 
-    st.markdown(
-        f"""
-        <div style="
-            padding:20px;
-            border-radius:10px;
-            background-color:#0000001A;
-            border-left:6px solid #2563EB;
-        ">
-            <h4>{recommendation}</h4>
-            <p>
-            Policy recommendation generated using
-            customer risk assessment and machine
-            learning analysis.
-            </p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        st.markdown("---")
+
+        st.subheader("Risk Interpretation")
+
+        if risk == "Low Risk":
+
+            st.info(
+                """
+                Customer shows low insurance risk.
+                Suitable for standard insurance plans.
+                """
+            )
+
+        elif risk == "Medium Risk":
+
+            st.warning(
+                """
+                Customer shows moderate risk factors.
+                Enhanced policy coverage is recommended.
+                """
+            )
+
+        else:
+
+            st.error(
+                """
+                Customer exhibits high risk characteristics.
+                Premium insurance plans are recommended.
+                """
+            )
 
     st.markdown("---")
 
-    st.subheader("Customer Analysis Summary")
-
-    st.write(f"Age: {age}")
-    st.write(f"BMI: {bmi}")
-    st.write(f"Children: {children}")
-    st.write(f"Smoking Status: {smoker}")
-    st.write(f"Region: {region}")
-
-    st.markdown("---")
-
-    st.subheader("Risk Interpretation")
-
-    if risk == "Low Risk":
-
-        st.info(
-            """
-            Customer shows low insurance risk.
-            Suitable for standard insurance plans.
-            """
-        )
-
-    elif risk == "Medium Risk":
-
-        st.warning(
-            """
-            Customer shows moderate risk factors.
-            Enhanced policy coverage is recommended.
-            """
-        )
-
-    else:
-
-        st.error(
-            """
-            Customer exhibits high risk characteristics.
-            Premium insurance plans are recommended.
-            """
-        )
-
-    st.markdown("---")
+if page == "Analytics Dashboard":
 
     st.header("📊 Dashboard Analytics")
 
@@ -230,72 +263,133 @@ if st.button("🔍 Analyze Customer", use_container_width=True):
         }
     )
 
-    st.subheader("Risk Distribution")
+    with st.expander(
+        "📊 Risk Distribution Analysis",
+        expanded=False
+    ):
 
-    st.bar_chart(
-        risk_df.set_index("Risk Level")
-    )
-
-    segment_df = pd.DataFrame(
-        {
-            "Customer Type": [
-                "Non-Smoker",
-                "Smoker"
-            ],
-            "Count": [
-                1063,
-                274
-            ]
-        }
-    )
-
-    st.subheader("Customer Segmentation")
-
-    st.bar_chart(
-        segment_df.set_index(
-            "Customer Type"
+        st.bar_chart(
+            risk_df.set_index("Risk Level")
         )
-    )
 
-st.subheader("Model Performance")
+        segment_df = pd.DataFrame(
+            {
+                "Customer Type": [
+                    "Non-Smoker",
+                    "Smoker"
+                ],
+                "Count": [
+                    1063,
+                    274
+                ]
+            }
+        )
 
-col1, col2, col3 = st.columns(3)
+    with st.expander(
+        "👥 Customer Segmentation",
+        expanded=False
+    ):
 
-with col1:
+        st.bar_chart(
+            segment_df.set_index(
+                "Customer Type"
+            )
+        )
 
-    st.metric(
-        "Classification Accuracy",
-        "90.30%"
-    )
+    with st.expander(
+        "📈 Model Performance",
+        expanded=False
+    ):
 
-with col2:
+        col1, col2, col3 = st.columns(3)
 
-    st.metric(
-        "Optimized Random Forest R²",
-        "89.38%"
-    )
+        with col1:
 
-with col3:
-    st.metric(
-        "Dataset Records",
-        "1338"
-    )
+            st.metric(
+                "Classification Accuracy",
+                "90.30%"
+            )
 
-st.subheader(
-    "Business Insights"
-)
+        with col2:
 
-st.info(
-    """
-    • Smokers represent the majority of high-risk customers.
+            st.metric(
+                "Optimized Random Forest R²",
+                "89.38%"
+            )
 
-    • Low-risk and high-risk customers are almost equally distributed.
+        with col3:
+            st.metric(
+                "Dataset Records",
+                "1338"
+            )
 
-    • Random Forest achieved the best overall predictive performance.
+    with st.expander(
+        "🗂️ Dataset Explorer",
+        expanded=False
+    ):
+        dataset_info = pd.DataFrame({
+        "Feature": [
+            "Age",
+            "Sex",
+            "BMI",
+            "Children",
+            "Smoker",
+            "Region"
+        ],
+        "Type": [
+            "Numeric",
+            "Categorical",
+            "Numeric",
+            "Numeric",
+            "Categorical",
+            "Categorical"
+        ]
+        })
 
-    • The recommendation engine can support insurance decision-making.
-    """
-)
+        st.dataframe(
+            dataset_info,
+            use_container_width=True
+        )
+
+    with st.expander(
+        "💡 Business Insights",
+        expanded=False
+    ):
+
+        st.info(
+            """
+            • Smokers represent the majority of high-risk customers.
+
+            • Low-risk and high-risk customers are almost equally distributed.
+
+            • Random Forest achieved the best overall predictive performance.
+
+            • The recommendation engine can support insurance decision-making.
+            """
+        )
+
+    with st.expander(
+        "🔍 Customer Risk Insights",
+        expanded=False
+    ):
+        st.success(
+            """
+            Key Risk Drivers
+
+            • Smoking Status
+
+            • BMI
+
+            • Age
+
+            • Number of Children
+
+            These features contribute most
+            to insurance risk assessment.
+            """
+        )
+
+    st.markdown("---")
 
 st.caption(
     "Insurance AI Risk Analysis and Policy Recommendation System | AI/ML Internship Project"
