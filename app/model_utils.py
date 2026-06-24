@@ -16,9 +16,39 @@ risk_labels = {
 def recommend_policy(risk_level):
 
     recommendations = {
-        "Low Risk": "Basic Insurance Plan",
-        "Medium Risk": "Standard Insurance Plan",
-        "High Risk": "Premium Insurance Plan"
+
+        "Low Risk":
+        """
+        Basic Insurance Plan
+
+        • Affordable Premium
+
+        • Essential Coverage
+
+        • Suitable for Low-Risk Customers
+        """,
+
+        "Medium Risk":
+        """
+        Standard Insurance Plan
+
+        • Balanced Coverage
+
+        • Moderate Premium
+
+        • Additional Protection Benefits
+        """,
+
+        "High Risk":
+        """
+        Premium Insurance Plan
+
+        • Comprehensive Coverage
+
+        • Higher Claim Protection
+
+        • Suitable for High-Risk Customers
+        """
     }
 
     return recommendations[risk_level]

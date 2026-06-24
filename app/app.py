@@ -203,6 +203,54 @@ if page == "Risk Prediction":
             unsafe_allow_html=True
         )
 
+        st.subheader(
+        "Recommendation Explanation"
+    )
+
+        st.info(
+            """
+            The recommendation is generated using customer
+            demographic information, lifestyle indicators,
+            and predicted insurance risk levels produced by
+            the trained Random Forest machine learning model.
+
+            Customers classified as Low Risk receive Basic
+            Insurance Plans, Medium Risk customers receive
+            Standard Insurance Plans, and High Risk customers
+            receive Premium Insurance Plans with enhanced
+            coverage options.
+            """
+        )
+
+        st.subheader(
+            "Available Insurance Plans"
+        )
+
+        plan_df = pd.DataFrame(
+            {
+                "Plan": [
+                    "Basic",
+                    "Standard",
+                    "Premium"
+                ],
+                "Coverage": [
+                    "Essential",
+                    "Extended",
+                    "Comprehensive"
+                ],
+                "Target Risk Level": [
+                    "Low Risk",
+                    "Medium Risk",
+                    "High Risk"
+                ]
+            }
+        )
+
+        st.dataframe(
+            plan_df,
+            use_container_width=True
+        )
+
         st.markdown("---")
 
         st.subheader("Customer Analysis Summary")
