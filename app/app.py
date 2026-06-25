@@ -158,8 +158,6 @@ if page == "Risk Prediction":
 
         risk, recommendation = predict_risk(customer)
 
-        st.balloons()
-
         st.success(
             "Analysis Completed Successfully"
         )
@@ -253,16 +251,6 @@ if page == "Risk Prediction":
 
         st.markdown("---")
 
-        st.subheader("Customer Analysis Summary")
-
-        st.write(f"Age: {age}")
-        st.write(f"BMI: {bmi}")
-        st.write(f"Children: {children}")
-        st.write(f"Smoking Status: {smoker}")
-        st.write(f"Region: {region}")
-
-        st.markdown("---")
-
         st.subheader("Risk Interpretation")
 
         if risk == "Low Risk":
@@ -292,7 +280,120 @@ if page == "Risk Prediction":
                 """
             )
 
-    st.markdown("---")
+        st.markdown("---")
+
+        st.subheader("Customer Profile")
+
+        profile_data = pd.DataFrame(
+            {
+                "Attribute": [
+                    "Age",
+                    "Gender",
+                    "BMI",
+                    "Children",
+                    "Smoking Status",
+                    "Region"
+                ],
+                "Value": [
+                    age,
+                    sex,
+                    bmi,
+                    children,
+                    smoker,
+                    region
+                ]
+            }
+        )
+
+        st.dataframe(
+            profile_data,
+            hide_index=True,
+            use_container_width=True
+        )
+
+        st.subheader("Customer Segmentation Summary")
+
+        if smoker == "Yes":
+            segment = "High-Risk Lifestyle Segment"
+        else:
+            segment = "General Lifestyle Segment"
+
+        st.success(
+            f"""
+            Customer Segment
+
+            {segment}
+            """
+        )
+
+        st.subheader("Risk Group Analysis")
+
+        if risk == "Low Risk":
+
+            st.info(
+                """
+                Low Risk Group
+
+                • Healthy customer profile
+
+                • Lower insurance claim probability
+
+                • Eligible for affordable insurance plans
+                """
+            )
+
+        elif risk == "Medium Risk":
+
+            st.warning(
+                """
+                Medium Risk Group
+
+                • Moderate insurance exposure
+
+                • Balanced premium recommendation
+
+                • Periodic policy review suggested
+                """
+            )
+
+        else:
+
+            st.error(
+                """
+                High Risk Group
+
+                • Higher insurance claim probability
+
+                • Comprehensive coverage recommended
+
+                • Premium protection advised
+                """
+            )
+
+        st.subheader("Customer Characteristics")
+
+        characteristics = pd.DataFrame(
+            {
+                "Category": [
+                    "Age Group",
+                    "Lifestyle",
+                    "Insurance Risk",
+                    "Recommended Plan"
+                ],
+                "Assessment": [
+                    "Adult" if age < 60 else "Senior",
+                    "Smoker" if smoker == "Yes" else "Non-Smoker",
+                    risk,
+                    recommendation.strip().splitlines()[0]
+                ]
+            }
+        )
+
+        st.dataframe(
+            characteristics,
+            hide_index=True,
+            use_container_width=True
+        )
 
 if page == "Analytics Dashboard":
 
