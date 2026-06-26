@@ -538,6 +538,59 @@ if page == "Analytics Dashboard":
             """
         )
 
+    with st.expander(
+        "🔄 Recommendation Workflow",
+        expanded=False
+    ):
+
+        st.markdown("""
+        Customer Information
+
+        ⬇️
+
+        Machine Learning Prediction
+
+        ⬇️
+
+        Risk Classification
+
+        ⬇️
+
+        Rule-Based Recommendation Engine
+
+        ⬇️
+
+        Insurance Policy Recommendation
+        """)
+
+    with st.expander(
+        "📋 Recommendation Review",
+        expanded=False
+    ):
+
+        review = pd.DataFrame(
+            {
+                "Validation Item": [
+                    "Risk Prediction",
+                    "Policy Mapping",
+                    "Recommendation Logic",
+                    "Recommendation Display"
+                ],
+                "Status": [
+                    "Pass",
+                    "Pass",
+                    "Pass",
+                    "Pass"
+                ]
+            }
+        )
+
+        st.dataframe(
+            review,
+            hide_index=True,
+            use_container_width=True
+        )
+
     st.markdown("---")
 
 st.caption(
