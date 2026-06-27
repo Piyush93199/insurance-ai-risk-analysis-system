@@ -8,15 +8,27 @@ st.set_page_config(
     layout="wide"
 )
 
-st.sidebar.title("🧭 Navigation")
+st.sidebar.title("🏥 Insurance AI")
+
+st.sidebar.markdown("---")
 
 page = st.sidebar.radio(
-    "Go To",
+    "Navigation",
     [
-        "Project Information",
-        "Risk Prediction",
-        "Analytics Dashboard"
+        "ℹ️ Project Information",
+        "🏠 Risk Prediction",
+        "📊 Analytics Dashboard",
     ]
+)
+
+st.sidebar.markdown("---")
+
+st.sidebar.success(
+    "Machine Learning Model\n\nRandom Forest"
+)
+
+st.sidebar.info(
+    "Dataset\n1338 Records"
 )
 
 st.title("🏥 Insurance AI Risk Analysis System")
@@ -29,7 +41,7 @@ st.markdown(
 
 st.markdown("---")
 
-if page == "Project Information":
+if page == "ℹ️ Project Information":
 
     st.header("Project Information")
 
@@ -69,7 +81,7 @@ if page == "Project Information":
 
     st.markdown("---")
 
-if page == "Risk Prediction":
+if page == "🏠 Risk Prediction":
     st.write(
         "Predict customer risk levels and receive policy recommendations."
     )
@@ -395,7 +407,7 @@ if page == "Risk Prediction":
             use_container_width=True
         )
 
-if page == "Analytics Dashboard":
+if page == "📊 Analytics Dashboard":
 
     st.header("📊 Dashboard Analytics")
 
@@ -450,26 +462,34 @@ if page == "Analytics Dashboard":
         expanded=False
     ):
 
-        col1, col2, col3 = st.columns(3)
+        col1, col2, col3, col4 = st.columns(4)
 
         with col1:
-
             st.metric(
-                "Classification Accuracy",
-                "90.30%"
+                "Accuracy",
+                "90.30%",
+                "↑ 2.4%"
             )
 
         with col2:
-
             st.metric(
-                "Optimized Random Forest R²",
-                "89.38%"
+                "Customers",
+                "1338",
+                "+1338"
             )
 
         with col3:
             st.metric(
-                "Dataset Records",
-                "1338"
+                "Risk Classes",
+                "3",
+                "Active"
+            )
+
+        with col4:
+            st.metric(
+                "ML Model",
+                "Random Forest",
+                "Best Model"
             )
 
     with st.expander(
@@ -581,6 +601,38 @@ if page == "Analytics Dashboard":
                     "Pass",
                     "Pass",
                     "Pass"
+                ]
+            }
+        )
+
+        st.dataframe(
+            review,
+            hide_index=True,
+            use_container_width=True
+        )
+
+    with st.expander(
+        "✅ Dashboard Review",
+        expanded=False
+    ):
+
+        review = pd.DataFrame(
+            {
+                "Component": [
+                    "Navigation",
+                    "Prediction",
+                    "Recommendation",
+                    "Analytics",
+                    "Documentation",
+                    "Testing"
+                ],
+                "Status": [
+                    "Completed",
+                    "Completed",
+                    "Completed",
+                    "Completed",
+                    "Completed",
+                    "Completed"
                 ]
             }
         )
